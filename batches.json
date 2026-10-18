@@ -1,0 +1,96 @@
+{
+  "success": true,
+  "batches": [
+    {
+      "_id": "ef0c24b8ec51489920ef097a",
+      "name": "Alpha",
+      "byName": "DSA only",
+      "startDate": "26 Sep 2026",
+      "endDate": "26 Sep 2027",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "coursaa-alpha",
+      "subBatches": []
+    },
+    {
+      "_id": "deea4cec8374ce2c0dcb61ac",
+      "name": "Delta",
+      "byName": "DSA only",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "delta",
+      "subBatches": []
+    },
+    {
+      "_id": "2200184ca8ebebebb0a5d342",
+      "name": "Alpha Plus",
+      "byName": "Web Development only",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "alpha-plus",
+      "subBatches": []
+    },
+    {
+      "_id": "c47af9e1204d4c6ba2f6e701",
+      "name": "Sigma",
+      "byName": "DSA + Web Development",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "sigma",
+      "subBatches": []
+    },
+    {
+      "_id": "f8063cebeaec7ae90ab20a14",
+      "name": "Sigma Prime AI/ML",
+      "byName": "DSA + Web Development + Aptitude + AI/ML",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "sigma-prime-ai-ml",
+      "subBatches": [],
+      "comingSoon": true
+    },
+    {
+      "_id": "b31e6a0d9c5f4e2ab1d8c493",
+      "name": "Prime",
+      "byName": "AI/ML Batch",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "prime",
+      "subBatches": []
+    },
+    {
+      "_id": "2293fe4483cee6a6fb2ef854",
+      "name": "Aptitude",
+      "byName": "Aptitude preparation only",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "aptitude",
+      "subBatches": []
+    },
+    {
+      "_id": "afbe7e94a595d26389fc6182",
+      "name": "Others",
+      "byName": "All other batches",
+      "language": "English",
+      "previewImage": "https://coursaa-main.vercel.app/logo.png",
+      "feeTotal": 0,
+      "type": "E_BATCH",
+      "slug": "others",
+      "subBatches": []
+    }
+  ]
+}
