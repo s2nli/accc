@@ -25,11 +25,11 @@ function escapeHtml(value = "") {
 }
 
 function categoryFor(batch) {
+  if (batch.category) return String(batch.category).toLowerCase();
   const text = `${batch.name || ""} ${batch.byName || ""}`.toLowerCase();
-  if (/\bjee\b|iit/.test(text)) return "jee";
-  if (/neet|medical/.test(text)) return "neet";
-  if (/class|cbse|icse|school|commerce|humanities/.test(text)) return "school";
-  return "exam";
+  if (/bank|ibps|sbi|rbi/.test(text)) return "banking";
+  if (/upsc|ias|pcs/.test(text)) return "upsc";
+  return "ssc";
 }
 
 function deepSearchText(batch) {
@@ -63,245 +63,14 @@ function deepSearch(batches, query) {
     .map((entry) => entry.batch);
 }
 
-/* Alpha batch: no key-generator / no intermediate redirect — goes straight to a popup. */
-const ALPHA_BATCH_ID = "ef0c24b8ec51489920ef097a";
-const ALPHA_BATCH_SLUG = "coursaa-alpha";
-const ALPHA_WATCH_URL = "https://coursaa-main.vercel.app/courses/alpha-batch-3";
-
-function isAlphaBatch(batch) {
-  if (!batch) return false;
-  const id = batch._id || batch.batch_id || "";
-  const slug = String(batch.slug || "").toLowerCase();
-  const name = String(batch.name || "").trim().toLowerCase();
-  return id === ALPHA_BATCH_ID || slug === ALPHA_BATCH_SLUG || name === "alpha";
-}
-
-/* Delta / Alpha Plus / Sigma / Prime / Aptitude / Others: same idea as Alpha — no key-generator,
-   no stream.testuk.org redirect. Delta and Alpha Plus have several *versions*, and each version
-   has its own set of course links, so those two open a version list first, then the version's
-   courses. Sigma / Prime / Aptitude / Others are a single flat list of course links. */
-const BATCH_COURSES = {
-  "delta": {
-    headingMain: "Delta",
-    headingSub: "Courses",
-    groups: [
-      { label: "Delta 7.0", image: "assets/batches/delta-7.png", items: [
-        { label: "Delta 7.0", url: "https://coursaa-main.vercel.app/courses/delta-7", image: "assets/batches/delta-7.png" },
-        { label: "DevHub Library", url: "https://coursaa-main.vercel.app/courses/delta-library", image: "assets/batches/delta-library.png" }
-      ] },
-      { label: "Delta 6.0", image: "assets/batches/delta-6.png", items: [
-        { label: "Delta 6.0 (Live Session Recordings)", url: "https://coursaa-main.vercel.app/courses/delta-6-live-recordings", image: "assets/batches/delta-6-live-recordings.png" },
-        { label: "Delta 6.0", url: "https://coursaa-main.vercel.app/courses/delta-6", image: "assets/batches/delta-6.png" },
-        { label: "DevHub Library", url: "https://coursaa-main.vercel.app/courses/delta-library", image: "assets/batches/delta-library.png" }
-      ] },
-      { label: "Delta 5.0", image: "assets/batches/delta-5.png", items: [
-        { label: "Delta 5.0", url: "https://coursaa-main.vercel.app/courses/delta-5", image: "assets/batches/delta-5.png" },
-        { label: "DevHub Library", url: "https://coursaa-main.vercel.app/courses/delta-library", image: "assets/batches/delta-library.png" }
-      ] },
-      { label: "Delta Feb'24", image: "assets/batches/delta-feb-24.png", items: [
-        { label: "DevHub Library", url: "https://coursaa-main.vercel.app/courses/delta-library", image: "assets/batches/delta-library.png" },
-        { label: "Delta Feb'24", url: "https://coursaa-main.vercel.app/courses/delta-feb-24", image: "assets/batches/delta-feb-24.png" }
-      ] }
-    ]
-  },
-  "alpha-plus": {
-    headingMain: "Alpha Plus",
-    headingSub: "Courses",
-    groups: [
-      { label: "Alpha Plus Batch 6.0", image: "assets/batches/alpha-plus-6.png", items: [
-        { label: "Alpha Plus Batch 6.0", url: "https://coursaa-main.vercel.app/courses/alpha-plus-6", image: "assets/batches/alpha-plus-6.png" },
-        { label: "Aptitude Preparation (Hinglish)", url: "https://coursaa-main.vercel.app/courses/aptitude-teacher2", image: "assets/batches/aptitude-teacher2.png" },
-        { label: "Aptitude Preparation (English)", url: "https://coursaa-main.vercel.app/courses/aptitude-qs-library", image: "assets/batches/aptitude-qs-library.png" }
-      ] },
-      { label: "Alpha Plus Batch 5.0 (C++)", image: "assets/batches/alpha-plus-5-cpp.png", items: [
-        { label: "Alpha Plus Batch 5.0 (C++)", url: "https://coursaa-main.vercel.app/courses/alpha-plus-5-cpp", image: "assets/batches/alpha-plus-5-cpp.png" },
-        { label: "Alpha Plus Batch 5.0", url: "https://coursaa-main.vercel.app/courses/alpha-plus-5", image: "assets/batches/alpha-plus-5.png" },
-        { label: "Aptitude Preparation (Hinglish)", url: "https://coursaa-main.vercel.app/courses/aptitude-teacher2", image: "assets/batches/aptitude-teacher2.png" },
-        { label: "Aptitude Preparation (English)", url: "https://coursaa-main.vercel.app/courses/aptitude-qs-library", image: "assets/batches/aptitude-qs-library.png" }
-      ] }
-    ]
-  },
-  "sigma": {
-    headingMain: "Sigma",
-    headingSub: "Courses",
-    items: [
-      { label: "Sigma 10", url: "https://coursaa-main.vercel.app/batches/sigma-10", image: "assets/batches/sigma-10.png" },
-      { label: "Sigma 9.0", url: "https://coursaa-main.vercel.app/batches/sigma-9", image: "assets/batches/sigma-9.png" },
-      { label: "Sigma 8.0", url: "https://coursaa-main.vercel.app/batches/sigma-8", image: "assets/batches/sigma-8.png" },
-      { label: "Sigma 7.0", url: "https://coursaa-main.vercel.app/batches/sigma-7", image: "assets/batches/sigma-7.png" },
-      { label: "Sigma 6.0", url: "https://coursaa-main.vercel.app/batches/sigma-6", image: "assets/batches/sigma-6.png" },
-      { label: "Sigma 5.0", url: "https://coursaa-main.vercel.app/batches/sigma-5", image: "assets/batches/sigma-5.png" },
-      { label: "Sigma 4.0", url: "https://coursaa-main.vercel.app/batches/sigma-4", image: "assets/batches/sigma-4.png" },
-      { label: "DevHub Library", url: "https://coursaa-main.vercel.app/batches/delta-library", image: "assets/batches/delta-library.png" },
-      { label: "Sigma 3.0", url: "https://coursaa-main.vercel.app/batches/sigma-3", image: "assets/batches/sigma-3.png" },
-      { label: "Sigma Batch (Development)", url: "https://coursaa-main.vercel.app/batches/sigma-batch-development", image: "assets/batches/sigma-batch-development.png" },
-      { label: "Sigma Feb'24 (Development)", url: "https://coursaa-main.vercel.app/batches/sigma-feb24", image: "assets/batches/sigma-feb24.png" }
-    ]
-  },
-  "prime": {
-    headingMain: "Prime",
-    headingSub: "",
-    items: [
-      { label: "Prime: AI/ML Batch", url: "https://coursaa-main.vercel.app/courses/prime-ai", image: "assets/batches/prime-ai.png" }
-    ]
-  },
-  "aptitude": {
-    headingMain: "Aptitude",
-    headingSub: "Courses",
-    items: [
-      { label: "Aptitude Preparation (Hinglish)", url: "https://coursaa-main.vercel.app/courses/aptitude-teacher2", image: "assets/batches/aptitude-teacher2.png" },
-      { label: "Aptitude Preparation (English)", url: "https://coursaa-main.vercel.app/courses/aptitude-qs-library", image: "assets/batches/aptitude-qs-library.png" }
-    ]
-  },
-  "others": {
-    headingMain: "Others",
-    headingSub: "",
-    items: [
-      { label: "DevHub Library", url: "https://coursaa-main.vercel.app/courses/delta-library", image: "assets/batches/delta-library.png" },
-      { label: "Plus Library", url: "https://coursaa-main.vercel.app/courses/plus-library", image: "assets/batches/plus-library.png" }
-    ]
-  }
-};
-
-function batchCoursesKeyFor(batch) {
-  if (!batch) return null;
-  const slug = String(batch.slug || "").toLowerCase();
-  return BATCH_COURSES[slug] ? slug : null;
-}
-
-function setBatchCoursesHeading(mainText, subText) {
-  const heading = document.getElementById("batchCoursesHeading");
-  if (!heading) return;
-  heading.innerHTML = `<strong>${escapeHtml(mainText)}</strong>${subText ? ` <span>${escapeHtml(subText)}</span>` : ""}`;
-}
-
-function leafCourseCardHtml(item) {
-  return `
-    <div class="modal alpha-modal">
-      <img class="alpha-modal-banner" src="${escapeHtml(item.image)}" alt="${escapeHtml(item.label)}">
-      <div class="alpha-modal-body">
-        <span class="alpha-modal-title">${escapeHtml(item.label)}</span>
-        <button class="alpha-watch-btn" type="button" data-course-url="${escapeHtml(item.url)}">WATCH NOW <span class="alpha-watch-arrow">→</span></button>
-      </div>
-    </div>`;
-}
-
-function groupCourseCardHtml(group, index) {
-  return `
-    <div class="modal alpha-modal">
-      <img class="alpha-modal-banner" src="${escapeHtml(group.image)}" alt="${escapeHtml(group.label)}">
-      <div class="alpha-modal-body">
-        <span class="alpha-modal-title">${escapeHtml(group.label)}</span>
-        <button class="alpha-watch-btn" type="button" data-group-index="${index}">WATCH NOW <span class="alpha-watch-arrow">→</span></button>
-      </div>
-    </div>`;
-}
-
-function wireLeafCourseLinks(container) {
-  container.querySelectorAll("[data-course-url]").forEach((button) => {
-    button.addEventListener("click", () => {
-      window.location.href = button.dataset.courseUrl;
-    });
-  });
-}
-
-function renderBatchTopLevel(key) {
-  const data = BATCH_COURSES[key];
-  if (!data) return false;
-  setBatchCoursesHeading(data.headingMain, data.headingSub);
-  const list = document.getElementById("batchCoursesList");
-  if (!list) return true;
-  if (data.groups) {
-    list.innerHTML = `<div class="batch-course-group">${data.groups.map((group, index) => groupCourseCardHtml(group, index)).join("")}</div>`;
-    list.querySelectorAll("[data-group-index]").forEach((button) => {
-      button.addEventListener("click", () => {
-        const groupIndex = Number(button.dataset.groupIndex);
-        pushModalHistory({ cxScreen: "batchGroup", key, groupIndex });
-        renderBatchGroupLevel(key, groupIndex);
-      });
-    });
-  } else {
-    list.innerHTML = `<div class="batch-course-group">${data.items.map((item) => leafCourseCardHtml(item)).join("")}</div>`;
-    wireLeafCourseLinks(list);
-  }
-  return true;
-}
-
-function renderBatchGroupLevel(key, groupIndex) {
-  const data = BATCH_COURSES[key];
-  const group = data && data.groups && data.groups[groupIndex];
-  if (!group) return false;
-  setBatchCoursesHeading(group.label, "");
-  const list = document.getElementById("batchCoursesList");
-  if (!list) return true;
-  list.innerHTML = `<div class="batch-course-group">${group.items.map((item) => leafCourseCardHtml(item)).join("")}</div>`;
-  wireLeafCourseLinks(list);
-  return true;
-}
-
-/* History-backed navigation so the phone/browser back button steps back one screen at a
-   time (group list -> version list -> home) instead of leaving the site entirely. */
-function pushModalHistory(state) {
-  history.pushState(state, "");
-}
-
-function goBackModal() {
-  history.back();
-}
-
-function closeAllModalScreens() {
-  closeModal("alphaModal");
-  closeModal("batchCoursesModal");
-}
-
-function applyModalHistoryState(state) {
-  if (!state || !state.cxScreen) {
-    closeAllModalScreens();
-    return;
-  }
-  if (state.cxScreen === "alpha") {
-    openModal("alphaModal");
-  } else if (state.cxScreen === "batchList") {
-    renderBatchTopLevel(state.key);
-    openModal("batchCoursesModal");
-  } else if (state.cxScreen === "batchGroup") {
-    renderBatchGroupLevel(state.key, state.groupIndex);
-    openModal("batchCoursesModal");
-  }
-}
-
-window.addEventListener("popstate", (event) => applyModalHistoryState(event.state));
-
 function openBatch(batch) {
-  if (batch && batch.comingSoon) {
-    return showToast("Coming soon — this batch isn't available yet.");
-  }
-  if (isAlphaBatch(batch)) {
-    addRecentlyViewed(batch);
-    try { window.CXProfile && window.CXProfile.trackBatch(batch); } catch (e) {}
-    renderRecentlyWatched();
-    pushModalHistory({ cxScreen: "alpha" });
-    openModal("alphaModal");
-    return;
-  }
-  const coursesKey = batchCoursesKeyFor(batch);
-  if (coursesKey) {
-    addRecentlyViewed(batch);
-    try { window.CXProfile && window.CXProfile.trackBatch(batch); } catch (e) {}
-    renderRecentlyWatched();
-    pushModalHistory({ cxScreen: "batchList", key: coursesKey });
-    renderBatchTopLevel(coursesKey);
-    openModal("batchCoursesModal");
-    return;
-  }
   const id = batch._id || batch.batch_id;
   if (!id) return showToast("This course is not available right now.");
   addRecentlyViewed(batch);
   try { window.CXProfile && window.CXProfile.trackBatch(batch); } catch (e) {}
   renderRecentlyWatched();
   try { sessionStorage.setItem("cx-scroll", String(Math.round(window.scrollY))); } catch (e) {}
-  const name = encodeURIComponent(batch.name || "Course").replace(/%20/g, "+");
-  window.location.href = `https://stream.testuk.org/subjects?batchId=${encodeURIComponent(id)}&batchName=${name}`;
+  window.location.href = `batch.html?id=${encodeURIComponent(id)}`;
 }
 
 function getRecentlyViewed() {
@@ -318,7 +87,51 @@ function addRecentlyViewed(batch) {
   localStorage.setItem("codex-studys-recent", JSON.stringify(recent.slice(0, 8)));
 }
 
+const RECENT_LECTURES_KEY = "codex-studys-recent-lectures";
+const DONE_KEY = "cx-done";
 let recentExpanded = false;
+
+function readJson(key, fallback) {
+  try { const v = localStorage.getItem(key); return v == null ? fallback : JSON.parse(v); }
+  catch { return fallback; }
+}
+
+function getRecentLectures() {
+  const list = readJson(RECENT_LECTURES_KEY, []);
+  return Array.isArray(list) ? list.filter((x) => x && x.b && x.i != null).slice(0, 10) : [];
+}
+
+function getDoneMap() {
+  const map = readJson(DONE_KEY, {});
+  return map && typeof map === "object" && !Array.isArray(map) ? map : {};
+}
+
+function formatHms(total) {
+  const t = Math.max(0, Math.floor(Number(total) || 0));
+  const h = Math.floor(t / 3600), m = Math.floor((t % 3600) / 60), s = t % 60;
+  return [h, m, s].map((n) => String(n).padStart(2, "0")).join(":");
+}
+
+function lectureWatchInfo(item) {
+  const id = item.b + "-" + item.i;
+  const dur = Number(readJson("lp:dur:" + id, 0)) || 0;
+  const done = !!getDoneMap()[id];
+  let pos = Number(readJson("lp:pos:" + id, 0)) || 0;
+  if (done) pos = dur;
+  if (dur) pos = Math.min(pos, dur);
+  const pct = done ? 100 : dur ? Math.min(100, Math.round((pos / dur) * 100)) : 0;
+  return { pos, dur, pct, done };
+}
+
+function openRecentLecture(item) {
+  const full = allBatches.find((batch) => (batch._id || batch.batch_id) === item.b);
+  if (full) {
+    addRecentlyViewed(full);
+    try { window.CXProfile && window.CXProfile.trackBatch(full); } catch (e) {}
+  }
+  try { sessionStorage.setItem("cx-scroll", String(Math.round(window.scrollY))); } catch (e) {}
+  window.location.href = `batch.html?id=${encodeURIComponent(item.b)}#lec=${encodeURIComponent(item.i)}`;
+}
 
 function renderRecentlyWatched() {
   const statRecent = document.getElementById("statRecent");
@@ -326,7 +139,7 @@ function renderRecentlyWatched() {
   const section = document.getElementById("recentSection");
   const row = document.getElementById("recentRow");
   if (!section || !row) return;
-  const items = getRecentlyViewed();
+  const items = getRecentLectures();
   if (!items.length) { section.style.display = "none"; row.innerHTML = ""; recentExpanded = false; return; }
   section.style.display = "block";
   if (items.length < 2) recentExpanded = false;
@@ -337,20 +150,20 @@ function renderRecentlyWatched() {
     viewAll.setAttribute("aria-expanded", recentExpanded ? "true" : "false");
   }
   const shown = recentExpanded ? items : items.slice(0, 1);
-  row.innerHTML = shown.map((item, index) => `
-    <button class="rw-item" type="button" data-recent-index="${index}">
-      <img class="rw-thumb" src="${escapeHtml(item.previewImage || FALLBACK_THUMB)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${FALLBACK_THUMB}'">
+  row.innerHTML = shown.map((item, index) => {
+    const info = lectureWatchInfo(item);
+    return `
+    <button class="rw-item${info.done ? " full" : ""}" type="button" data-recent-index="${index}">
+      <img class="rw-thumb" src="${escapeHtml(item.th || FALLBACK_THUMB)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.src='${FALLBACK_THUMB}'">
       <span class="rw-info">
-        <span class="rw-name">${escapeHtml(item.name || "Course")}</span>
-        <span class="rw-meta"><span>${escapeHtml(item.byName || item.language || "Continue watching")}</span></span>
+        <span class="rw-name">${escapeHtml(item.t || "Lecture")}</span>
+        <span class="rw-meta"><span>${formatHms(info.pos)} / ${formatHms(info.dur)}</span><span class="rw-pct">Watched: ${info.pct}%</span></span>
+        <span class="rw-bar"><i style="width:${info.pct}%"></i></span>
       </span>
-    </button>`).join("");
+    </button>`;
+  }).join("");
   row.querySelectorAll("[data-recent-index]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const item = shown[Number(button.dataset.recentIndex)];
-      const full = allBatches.find((batch) => (batch._id || batch.batch_id) === item._id);
-      openBatch(full || item);
-    });
+    button.addEventListener("click", () => openRecentLecture(shown[Number(button.dataset.recentIndex)]));
   });
 }
 
@@ -361,7 +174,7 @@ function setupRecentlyWatched() {
     renderRecentlyWatched();
   });
   document.getElementById("recentClearBtn")?.addEventListener("click", () => {
-    localStorage.removeItem("codex-studys-recent");
+    localStorage.removeItem(RECENT_LECTURES_KEY);
     recentExpanded = false;
     renderRecentlyWatched();
     showToast("Recently watched cleared.");
@@ -457,15 +270,13 @@ function courseCard(batch) {
   const favActive = isFavorite(id);
   const startDate = formatDate(batch.startDate);
   const fresh = isRecent(batch.startDate);
-  const comingSoon = Boolean(batch.comingSoon);
   return `
-    <article class="course-card" data-id="${id}" tabindex="0" role="button" aria-label="${comingSoon ? `${title} — coming soon` : `Open ${title}`}">
+    <article class="course-card" data-id="${id}" tabindex="0" role="button" aria-label="Open ${title}">
       <div class="course-thumb">
         <div class="thumb-fallback thumb-shimmer"></div>
         <img src="${image}" alt="" loading="lazy" referrerpolicy="no-referrer" onload="this.classList.add('loaded');this.previousElementSibling.style.display='none'" onerror="this.style.display='none'">
         <span class="course-tag">${escapeHtml(category)}</span>
-        ${fresh && !comingSoon ? '<span class="course-tag course-tag-new">NEW</span>' : ""}
-        ${comingSoon ? '<span class="course-tag course-tag-new">SOON</span>' : ""}
+        ${fresh ? '<span class="course-tag course-tag-new">NEW</span>' : ""}
         <button class="fav-btn${favActive ? " active" : ""}" type="button" data-fav-id="${id}" aria-label="${favActive ? "Remove from favorites" : "Add to favorites"}" aria-pressed="${favActive}">
           <svg viewBox="0 0 24 24" fill="${favActive ? "currentColor" : "none"}" stroke="currentColor" stroke-width="2"><path d="M12 21s-7.2-4.5-9.6-9C.6 8.1 2.4 4.5 6 4.2c2.1-.15 3.6 1.05 6 3.3 2.4-2.25 3.9-3.45 6-3.3 3.6.3 5.4 3.9 3.6 7.8-2.4 4.5-9.6 9-9.6 9Z"/></svg>
         </button>
@@ -478,7 +289,7 @@ function courseCard(batch) {
       <div class="course-body">
         <h3 class="course-title">${title}</h3>
         <p class="course-description">${description}</p>
-        <div class="course-meta"><span>${startDate ? `📅 ${startDate}` : language}</span><button class="course-cta" type="button">${comingSoon ? "Coming Soon" : "Let's Study"} <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+        <div class="course-meta"><span>${startDate ? `📅 ${startDate}` : language}</span><button class="course-cta" type="button">Let's Study <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
       </div>
     </article>`;
 }
@@ -754,28 +565,11 @@ function setupModals() {
     if (event.key === "Enter" && event.target.value.trim()) addSearchHistory(event.target.value);
   });
   $$("[data-close]").forEach((button) => button.addEventListener("click", () => closeModal(button.dataset.close)));
-  $$("[data-modal-back]").forEach((button) => button.addEventListener("click", () => goBackModal()));
   $$(".overlay").forEach((overlay) => overlay.addEventListener("click", (event) => {
-    if (event.target !== overlay) return;
-    if (overlay.id === "alphaModal" || overlay.id === "batchCoursesModal") {
-      goBackModal();
-    } else {
-      closeModal(overlay.id);
-    }
+    if (event.target === overlay) closeModal(overlay.id);
   }));
-  $("#alphaWatchBtn")?.addEventListener("click", () => {
-    window.location.href = ALPHA_WATCH_URL;
-  });
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      $$(".overlay.visible").forEach((modal) => {
-        if (modal.id === "alphaModal" || modal.id === "batchCoursesModal") {
-          goBackModal();
-        } else {
-          closeModal(modal.id);
-        }
-      });
-    }
+    if (event.key === "Escape") $$(".overlay.visible").forEach((modal) => closeModal(modal.id));
     if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k") {
       event.preventDefault();
       openModal("searchModal");
@@ -1277,28 +1071,30 @@ function setupNetworkStatus() {
   refreshBtn?.addEventListener("click", measure);
 }
 
-const POPUP_SNOOZE_KEY = "cx-popups-snooze-until";
+const POPUP_SNOOZE_KEY = "codex-studys-popups-snooze";
 const POPUP_SNOOZE_MS = 24 * 60 * 60 * 1000;
 
 function popupsSnoozed() {
-  try { return Date.now() < Number(localStorage.getItem(POPUP_SNOOZE_KEY) || 0); } catch (e) { return false; }
-}
-
-function snoozePopups() {
-  try { localStorage.setItem(POPUP_SNOOZE_KEY, String(Date.now() + POPUP_SNOOZE_MS)); } catch (e) {}
-  closeModal("telegramModal");
-  closeModal("installModal");
-  showToast("Ok! Ye popups 24 ghante tak nahi dikhenge.");
+  try {
+    const until = Number(localStorage.getItem(POPUP_SNOOZE_KEY) || 0);
+    return until > Date.now();
+  } catch (e) { return false; }
 }
 
 function setupTelegramPopup() {
-  $$("[data-snooze-popups]").forEach((btn) => btn.addEventListener("click", snoozePopups));
-  if (popupsSnoozed()) return; // user chose "don't show again for 24 hours"
+  document.querySelectorAll("[data-snooze-popups]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      try { localStorage.setItem(POPUP_SNOOZE_KEY, String(Date.now() + POPUP_SNOOZE_MS)); } catch (e) {}
+      closeModal("telegramModal");
+      closeModal("installModal");
+      showToast("Popups 24 ghante ke liye band");
+    });
+  });
+  if (popupsSnoozed()) return;
   let seen = false;
   try { seen = sessionStorage.getItem("cx-popups-shown") === "1"; } catch (e) {}
   if (seen) return; // already shown this session (e.g. coming back from a batch)
   window.setTimeout(() => {
-    if (popupsSnoozed()) return;
     try { sessionStorage.setItem("cx-popups-shown", "1"); } catch (e) {}
     openModal("telegramModal");
     const modal = document.getElementById("telegramModal");
@@ -1534,7 +1330,8 @@ function openDetail(batch) {
     ["Category", categoryFor(batch).toUpperCase()],
     ["Language", batch.language || "Self-paced"],
     ["Starts", formatDate(batch.startDate) || "Anytime"],
-    ["Subjects", String((batch.subBatches || []).length || "—")]
+    ["Lectures", String(batch.lectureCount || "—")],
+    ["Notes", String(batch.noteCount || "—")]
   ];
   const factsEl = document.getElementById("detailFacts");
   if (factsEl) factsEl.innerHTML = facts.map(([k, v]) => `<div class="detail-fact"><span>${escapeHtml(k)}</span><span>${escapeHtml(String(v))}</span></div>`).join("");

@@ -3,11 +3,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <meta name="theme-color" content="#000000">
+  <meta name="theme-color" content="#090b10">
   <meta name="description" content="CODEX STUDYS is a smart learning platform for focused preparation, practice and progress.">
   <meta name="keywords" content="CODEX STUDYS, online learning, courses, notes, practice, exam preparation">
   <meta property="og:title" content="CODEX STUDYS — Smart Learning Platform">
-  <meta property="og:description" content="7,900+ free courses across JEE, NEET, School and Competitive exams — all in one place.">
+  <meta property="og:description" content="Free SSC, Banking and UPSC batches with lectures and notes — all in one place.">
   <meta property="og:type" content="website">
   <meta property="og:image" content="https://files.catbox.moe/1phadr.png">
   <meta property="og:image:width" content="512">
@@ -15,14 +15,14 @@
   <meta property="og:site_name" content="CODEX STUDYS">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="CODEX STUDYS — Smart Learning Platform">
-  <meta name="twitter:description" content="7,900+ free courses across JEE, NEET, School and Competitive exams — all in one place.">
+  <meta name="twitter:description" content="Free SSC, Banking and UPSC batches with lectures and notes — all in one place.">
   <meta name="twitter:image" content="https://files.catbox.moe/1phadr.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="CODEX STUDYS">
-  <link rel="icon" href="assets/apna-collage-icon-192.png">
+  <link rel="icon" href="assets/mj-icon-192.png">
   <link rel="manifest" href="manifest.json">
-  <link rel="apple-touch-icon" href="assets/apna-collage-icon-192.png">
+  <link rel="apple-touch-icon" href="assets/mj-icon-192.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -372,8 +372,6 @@
     .pref-toggle[aria-checked="true"] .pref-toggle-knob { left: 19px; background: #fff; }
     .prefs-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; }
     .text-link-danger { color: var(--danger); }
-    .snooze-link { display: block; width: 100%; margin-top: 14px; padding: 6px 0 0; text-align: center; color: var(--muted); font-size: 12px; font-weight: 600; background: none; border: 0; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; }
-    .snooze-link:hover { color: var(--text); }
     .text-link { background: none; border: 0; cursor: pointer; padding: 0; }
     .announce-modal { padding: 0; overflow: hidden; }
     .announce-head { position: relative; display: flex; align-items: center; gap: 12px; padding: 20px 52px 20px 20px; background: linear-gradient(135deg, var(--brand), var(--brand-bright)); color: #fff; }
@@ -554,36 +552,6 @@
     .scroll-progress { position: fixed; z-index: 95; top: 0; left: 0; height: 3px; width: 0; background: linear-gradient(90deg, var(--brand), var(--mint)); transition: width .1s linear; }
     /* Quick view modal */
     .detail-hero { width: 100%; aspect-ratio: 16/9; object-fit: cover; border-radius: 14px; border: 1px solid var(--line); background: var(--panel-soft); margin-bottom: 14px; }
-    .alpha-page-overlay { background: var(--bg); backdrop-filter: none; align-items: flex-start; padding: 0; overflow-y: auto; }
-    .alpha-page { width: 100%; max-width: 560px; margin: 0 auto; padding: 14px 16px 40px; animation: modal-in .25s ease; }
-    .alpha-page-topbar { display: flex; align-items: center; gap: 14px; padding: 8px 2px 24px; }
-    .alpha-back-btn { flex: 0 0 auto; width: 34px; height: 34px; display: grid; place-items: center; border: 0; border-radius: 9px; color: var(--text); background: transparent; cursor: pointer; }
-    .alpha-back-btn:hover { background: rgba(255,255,255,.06); }
-    .alpha-back-btn svg { width: 22px; height: 22px; }
-    .alpha-page-heading { margin: 0; font: 700 21px "Space Grotesk"; letter-spacing: -.02em; color: var(--text); }
-    .alpha-page-heading span { color: var(--muted); font-weight: 500; }
-    .alpha-modal { width: 100%; padding: 0; overflow: hidden; background: color-mix(in srgb, var(--panel-solid) 88%, transparent); border: 1px solid var(--line-strong); box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 1px rgba(148,135,255,.12) inset; }
-    .alpha-modal .close-btn { top: 12px; right: 12px; color: #fff; border-color: rgba(255,255,255,.35); background: rgba(10,10,18,.55); backdrop-filter: blur(6px); z-index: 2; }
-    .alpha-modal .close-btn:hover { background: rgba(10,10,18,.8); }
-    .alpha-modal-banner { display: block; width: 100%; aspect-ratio: 986/524; object-fit: cover; }
-    .alpha-modal-body { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 16px 18px; }
-    .alpha-modal-title { font: 700 17px "Space Grotesk"; letter-spacing: -.01em; color: var(--text); background: linear-gradient(135deg, #d8d3ff, #9487ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .alpha-watch-btn { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border: 0; border-radius: 999px; color: #fff; font: 700 12.5px "Space Grotesk"; letter-spacing: .04em; white-space: nowrap; background: linear-gradient(135deg, #9487ff, #6c5bed); box-shadow: 0 8px 20px rgba(109,91,237,.34); cursor: pointer; transition: transform .18s ease, box-shadow .18s ease; }
-    .alpha-watch-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(109,91,237,.46); }
-    .alpha-watch-btn:active { transform: translateY(0) scale(.96); transition-duration: .1s; }
-    .alpha-watch-arrow { transition: transform .18s ease; }
-    .alpha-watch-btn:hover .alpha-watch-arrow { transform: translateX(3px); }
-    @media (max-width: 420px) {
-      .alpha-modal-body { padding: 13px 14px; gap: 10px; }
-      .alpha-modal-title { font-size: 15px; }
-      .alpha-watch-btn { padding: 9px 13px; font-size: 11.5px; }
-      .alpha-page { padding: 10px 12px 32px; }
-      .alpha-page-heading { font-size: 19px; }
-    }
-    .batch-courses-list { display: flex; flex-direction: column; gap: 26px; }
-    .batch-course-group { display: flex; flex-direction: column; gap: 12px; }
-    .batch-course-group-title { margin: 0 0 -2px 2px; font: 700 12.5px "Space Grotesk"; letter-spacing: .06em; text-transform: uppercase; color: var(--muted-bright); }
-    .batch-course-group .alpha-modal { width: 100%; }
     .detail-title { margin: 0 0 4px; font: 600 19px/1.3 "Space Grotesk", sans-serif; }
     .detail-sub { margin: 0 0 12px; color: var(--muted); font-size: 13px; }
     .detail-facts { display: grid; gap: 8px; margin-bottom: 14px; }
@@ -852,7 +820,7 @@
 
   <div class="overlay" id="installModal" role="dialog" aria-modal="true" aria-labelledby="installTitle">
     <div class="modal"><button class="close-btn" data-close="installModal" aria-label="Close install prompt">×</button>
-      <img class="telegram-logo" src="assets/apna-collage-icon-192.png" alt="CODEX STUDYS">
+      <img class="telegram-logo" src="assets/mj-icon-192.png" alt="CODEX STUDYS">
       <h2 id="installTitle">Install CODEX STUDYS 📲</h2>
       <p id="installBody">Add CODEX STUDYS to your home screen for a faster, app-like experience — works offline too.</p>
       <div class="modal-actions">
@@ -863,45 +831,16 @@
         <li>Scroll down and tap <strong>Add to Home Screen</strong></li>
         <li>Tap <strong>Add</strong> to confirm</li>
       </ol>
-      <button class="snooze-link" type="button" data-snooze-popups>Don't show again for 24 hours</button>
+      <button class="text-link" type="button" data-snooze-popups style="display:block;margin:14px auto 0;text-align:center;">Don't show again for 24 hrs</button>
     </div>
   </div>
 
   <div class="overlay" id="telegramModal" role="dialog" aria-modal="true" aria-labelledby="telegramTitle">
     <div class="modal"><button class="close-btn" data-close="telegramModal" aria-label="Close popup">×</button><img class="telegram-logo" src="assets/icon-192.png" referrerpolicy="no-referrer" alt="CODEX STUDYS"><h2 id="telegramTitle">Join Our Community 🚀</h2><p>Stay updated with the latest materials, notes, PDFs and important updates.</p><div class="modal-actions"><a class="btn btn-telegram" href="https://t.me/s/codexstudys" target="_blank" rel="noopener" id="joinFromModal">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="m21.6 4.7-2.8 13.4c-.2.95-.77 1.18-1.56.74l-4.3-3.17-2.07 1.99c-.23.23-.42.42-.86.42l.31-4.39 7.99-7.22c.35-.31-.08-.48-.54-.17L8 12.55 3.79 11.2c-.92-.29-.94-.92.2-1.36L20.46 3.4c.78-.29 1.46.17 1.14 1.3Z"/></svg> Join Telegram</a><a class="btn btn-whatsapp" href="https://whatsapp.com/channel/0029VbDI2CGEAKWNSoya5L2w" target="_blank" rel="noopener" id="joinWhatsappFromModal">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.298-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.514 0-9.997 4.483-9.997 9.997 0 1.763.463 3.487 1.343 5.005L2 22l5.116-1.343a9.965 9.965 0 0 0 4.888 1.276h.004c5.514 0 9.997-4.483 9.997-9.997C22.005 6.483 17.522 2 12.004 2zm0 18.174h-.003a8.15 8.15 0 0 1-4.157-1.14l-.298-.176-3.09.81.826-3.011-.194-.309a8.13 8.13 0 0 1-1.253-4.352c0-4.499 3.66-8.159 8.171-8.159 2.183 0 4.234.851 5.777 2.395a8.116 8.116 0 0 1 2.394 5.775c0 4.5-3.66 8.167-8.173 8.167z"/></svg> Join WhatsApp Channel</a></div><button class="snooze-link" type="button" data-snooze-popups>Don't show again for 24 hours</button></div>
-  </div>
-  <div class="overlay alpha-page-overlay" id="alphaModal" role="dialog" aria-modal="true" aria-labelledby="alphaModalTitle">
-    <div class="alpha-page">
-      <div class="alpha-page-topbar">
-        <button class="alpha-back-btn" type="button" data-modal-back aria-label="Back">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        </button>
-        <h2 class="alpha-page-heading"><strong>Alpha</strong> <span>Courses</span></h2>
-      </div>
-      <div class="modal alpha-modal">
-        <img class="alpha-modal-banner" src="assets/alpha-batch-banner.png" alt="Alpha batch">
-        <div class="alpha-modal-body">
-          <span class="alpha-modal-title" id="alphaModalTitle">Alpha Batch 3.0</span>
-          <button class="alpha-watch-btn" type="button" id="alphaWatchBtn">WATCH NOW <span class="alpha-watch-arrow">→</span></button>
-        </div>
-      </div>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.298-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12.004 2c-5.514 0-9.997 4.483-9.997 9.997 0 1.763.463 3.487 1.343 5.005L2 22l5.116-1.343a9.965 9.965 0 0 0 4.888 1.276h.004c5.514 0 9.997-4.483 9.997-9.997C22.005 6.483 17.522 2 12.004 2zm0 18.174h-.003a8.15 8.15 0 0 1-4.157-1.14l-.298-.176-3.09.81.826-3.011-.194-.309a8.13 8.13 0 0 1-1.253-4.352c0-4.499 3.66-8.159 8.171-8.159 2.183 0 4.234.851 5.777 2.395a8.116 8.116 0 0 1 2.394 5.775c0 4.5-3.66 8.167-8.173 8.167z"/></svg> Join WhatsApp Channel</a></div><button class="text-link" type="button" data-snooze-popups style="display:block;margin:14px auto 0;text-align:center;">Don't show again for 24 hrs</button>
     </div>
   </div>
-
-  <div class="overlay alpha-page-overlay" id="batchCoursesModal" role="dialog" aria-modal="true" aria-labelledby="batchCoursesHeading">
-    <div class="alpha-page">
-      <div class="alpha-page-topbar">
-        <button class="alpha-back-btn" type="button" data-modal-back aria-label="Back">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
-        </button>
-        <h2 class="alpha-page-heading" id="batchCoursesHeading"></h2>
-      </div>
-      <div class="batch-courses-list" id="batchCoursesList"></div>
-    </div>
-  </div>
-
   <script src="app.js"></script>
   <script src="profile.js" defer></script>
 </body>
