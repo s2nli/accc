@@ -289,6 +289,7 @@
   };
 
   function openLecture(fi, o) {
+    if (window.AroGate && !AroGate.check(function () { openLecture(fi, o); })) return;
     o = o || {};
     const f0 = flat[fi]; if (!f0 || f0.pdf) return;
     setGroup(f0.g);
