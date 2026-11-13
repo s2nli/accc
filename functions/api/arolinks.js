@@ -8,8 +8,13 @@ export async function onRequest({ request, env }) {
   const out = (o, c) => new Response(JSON.stringify(o), { status: c || 200, headers: h });
   try {
     const me = new URL(request.url);
+    if (me.searchParams.has("owner")) return out({ owner: !!(env.OWNER_KEY && me.searchParams.get("owner") === env.OWNER_KEY) });
     const t = new URL(me.searchParams.get("url") || "");
     if (t.host !== me.host) return out({ error: "bad url" }, 400);
+    if (env.TURNSTILE_SECRET) {
+      const v = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", { method: "POST", body: new URLSearchParams({ secret: env.TURNSTILE_SECRET, response: me.searchParams.get("cf") || "" }) }).then((x) => x.json()).catch(() => ({}));
+      if (!v.success) return out({ error: "captcha" }, 403);
+    }
     const token = env.SHORTENER_TOKEN || env.AROLINKS_TOKEN;
     if (!token) return out({ error: "token missing" }, 500);
     const api = env.SHORTENER_API || "https://vplink.in/api";
