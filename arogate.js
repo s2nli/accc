@@ -1,6 +1,8 @@
 /* AroGate - key gate through a LiteShort short link. This app has its OWN key, valid 24 hours; the "generate key" screen shows when an app is opened. */
 (function () {
   "use strict";
+  // MASTER SWITCH: false = key gate OFF (nobody sees "generate key"); set to true to turn it back ON
+  var GATE_ON = false;
   var APP = "ac";
   var OK = "aro_ok_" + APP, NONCE = "aro_n_" + APP, HOURS = 24, MIN_MS = 8000;
   // Cloudflare Turnstile "security verification" card: paste your Site Key between the quotes ("" = switched off)
@@ -74,6 +76,7 @@
   var busy = false;
   // returns true when the visitor is already unlocked; otherwise sends them to the short link and returns false
   function check(proceed) {
+    if (!GATE_ON) return true;
     if (gc(OK) === "1" || gc("aro_owner") === "1") return true;
     if (busy) return false;
     if (TS_KEY && !tsToken) { showVerify(function () { check(proceed); }); return false; }
@@ -99,6 +102,7 @@
 
   // full-screen "generate key" screen - same look as the site's own modals (logo, fonts, buttons, theme colours)
   function showWall() {
+    if (!GATE_ON) return;
     if (gc(OK) === "1" || gc("aro_owner") === "1" || document.getElementById("aro-wall")) return;
     var st = document.createElement("style");
     st.textContent =
@@ -244,7 +248,7 @@
     tv.pause();
   }
 
-  function boot() { if (gc(OK) === "1" || gc("aro_owner") === "1") return; if (TS_KEY) showVerify(showWall); else showWall(); }
+  function boot() { if (!GATE_ON) return; if (gc(OK) === "1" || gc("aro_owner") === "1") return; if (TS_KEY) showVerify(showWall); else showWall(); }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot); else boot();
   window.AroGate = { check: check };
 })();
